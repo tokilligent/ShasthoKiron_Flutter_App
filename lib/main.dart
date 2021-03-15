@@ -1,10 +1,10 @@
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shastho_kiron/detail.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +17,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HealthApp(),
+      home: AnimatedSplashScreen(
+        splash: Image.asset('assets/launch_icon.jpeg'),
+        nextScreen: HealthApp(),
+        splashTransition: SplashTransition.sizeTransition,
+        backgroundColor: Colors.cyan,
+        splashIconSize: 400,
+      ),
     );
   }
 }
@@ -123,8 +129,9 @@ class _HealthAppState extends State<HealthApp> {
   _fetchData(CollectionReference collectionReference,
       DocumentSnapshot documentSnapshot) {
     String desc = documentSnapshot.data()['description'];
+    String desc1 = desc.replaceAll("\\n", "\n");
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => Detail(docToView: desc),
+      builder: (context) => Detail(docToView: desc1),
     ));
   }
 }

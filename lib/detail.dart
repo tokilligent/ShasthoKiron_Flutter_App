@@ -23,13 +23,11 @@ class _DetailState extends State<Detail> {
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Text(
               topicName,
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 32,
-              ),
+              style: TextStyle(fontSize: 30, fontFamily: 'Times New Roman'),
             ),
           ),
         ],
